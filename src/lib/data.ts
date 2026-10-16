@@ -10,7 +10,7 @@ export const supabase = configured
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     )
   : null;
-const KEY = "campus-cards-demo-v1";
+const KEY = "campus-cards-magdaleena-v2";
 export function readDemo(): Workspace {
   try {
     const value = localStorage.getItem(KEY);
@@ -73,11 +73,11 @@ export async function mutate(command: Command): Promise<void> {
     w.cards.push({
       id,
       club_id: inv.club_id,
-      user_id: "demo-student",
+      user_id: w.user_id,
       name: inv.name,
       role: role.name,
       tier: role.tier,
-      number: "NC · " + String(w.cards.length + 100).padStart(4, "0"),
+      number: "SRM · " + String(w.cards.length + 100).padStart(4, "0"),
       term: term.name,
       issued: now.slice(0, 10),
       expires: term.expires,

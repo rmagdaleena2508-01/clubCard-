@@ -22,7 +22,12 @@ import { haptic } from "@/lib/haptics";
 import { Pwa } from "@/components/pwa";
 import { Admin } from "@/components/admin";
 import { configured, supabase, loadWorkspace, mutate } from "@/lib/data";
-import { type Workspace, type Command, status } from "@/lib/model";
+import {
+  COLLEGE_NAME,
+  type Workspace,
+  type Command,
+  status,
+} from "@/lib/model";
 export default function Home() {
   const [w, setW] = useState<Workspace | null>(null),
     [tab, setTab] = useState("wallet"),
@@ -122,7 +127,7 @@ export default function Home() {
             <GraduationCap size={23} />
           </span>
           <div>
-            <strong>Northfield College</strong>
+            <strong>{COLLEGE_NAME}</strong>
             <small>Student communities</small>
           </div>
           <span className="college-chevron">⌄</span>
@@ -149,7 +154,7 @@ export default function Home() {
         <div className="sidebar-bottom">
           <Pwa />
           <div className="sidebar-profile">
-            <span className="profile-monogram">AM</span>
+            <span className="profile-monogram">M</span>
             <div>
               <strong>{w?.name || "Your campus identity"}</strong>
               <small>{configured ? "Member account" : "Demo student"}</small>
@@ -170,7 +175,7 @@ export default function Home() {
           </Link>
           <button className="account-button" onClick={() => setTab("profile")}>
             <span className="account-label">
-              {configured ? w?.name || "Sign in" : "Demo account"}
+              {configured ? w?.name || "Sign in" : "Magdaleena · Demo"}
             </span>
             <span className="profile-monogram" aria-hidden="true">
               {w?.name
@@ -576,13 +581,12 @@ export default function Home() {
                         </span>
                         <h2>{w.name}</h2>
                         <p>
-                          Northfield College · {ownCards.length} club
-                          memberships
+                          {COLLEGE_NAME} · {ownCards.length} club memberships
                         </p>
                         <p>
                           {configured
                             ? "Your name and role are managed by your issuing clubs. Contact a club administrator for changes."
-                            : "You’re exploring a fictional student account. Changes in this demo stay in this browser."}
+                            : "This is Magdaleena’s local demo account. These cards are previews, not college-issued IDs. Changes stay in this browser."}
                         </p>
                         {!configured && (
                           <div className="demo-tools">

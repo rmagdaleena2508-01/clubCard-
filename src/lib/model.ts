@@ -6,6 +6,7 @@ export type Club = {
   category: string;
   description: string;
   symbol: string;
+  logo?: string;
   color: string;
 };
 export type Role = { id: string; club_id: string; name: string; tier: Tier };
@@ -61,36 +62,29 @@ export function status(card: Pick<Card, "revoked" | "expires">) {
       ? "expired"
       : "valid";
 }
+export const COLLEGE_NAME =
+  "SRM Institute of Science and Technology, Vadapalli campus";
 export const clubs: Club[] = [
   {
-    id: "design",
-    name: "Design Collective",
-    short: "Design",
-    category: "Art & design",
-    description:
-      "A space for curious minds and thoughtful makers. We explore the intersection of design, culture, and everyday life.",
-    symbol: "Asterisk",
-    color: "#c8b789",
-  },
-  {
-    id: "tech",
-    name: "Coding Society",
-    short: "Code",
+    id: "csi",
+    name: "Computer Society of India student chapter",
+    short: "CSI",
     category: "Technology",
     description:
-      "Build something that matters. A community of developers, problem solvers, and late-night collaborators.",
+      "Learn, build, and share ideas with the Computer Society of India student chapter.",
     symbol: "Code",
-    color: "#a6b9c5",
+    logo: "/logos/csi.png",
+    color: "#d5aa43",
   },
   {
-    id: "photo",
-    name: "Photography Club",
-    short: "Photo",
-    category: "Arts & culture",
+    id: "edc",
+    name: "Entrepreneurship Development Cell",
+    short: "EDC",
+    category: "Entrepreneurship",
     description:
-      "Find a different perspective. Photo walks, shared stories, and a community that sees the world a little differently.",
-    symbol: "Aperture",
-    color: "#c09378",
+      "Turn ideas into action with a community of student founders and ambassadors. Rocket logo pending: please upload the image again.",
+    symbol: "Asterisk",
+    color: "#d5aa43",
   },
 ];
 export function seed(): Workspace {
@@ -112,7 +106,7 @@ export function seed(): Workspace {
       {
         id: c.id + "-lead",
         club_id: c.id,
-        name: "Creative Lead",
+        name: "Committee Lead",
         tier: "silver" as Tier,
       },
       {
@@ -121,49 +115,55 @@ export function seed(): Workspace {
         name: "Member",
         tier: "bronze" as Tier,
       },
+      {
+        id: c.id + "-ambassador",
+        club_id: c.id,
+        name: "IML Ambassador",
+        tier: "gold" as Tier,
+      },
     ]),
-    terms: [{ id: "2026", name: "2026 / 2027", expires: "2027-06-30" }],
+    terms: [{ id: "2026", name: "Jun 2026 – Jun 2029", expires: "2029-06-30" }],
     cards: clubs.map((c, i) => ({
       id: "card-" + i,
       club_id: c.id,
-      user_id: "demo-student",
-      name: "Aarav Mehta",
-      role: ["President", "Creative Lead", "Member"][i],
-      tier: (["gold", "silver", "bronze"] as Tier[])[i],
-      number: "NC · " + ["0018", "0042", "0106"][i],
-      term: "2026 / 2027",
-      issued: "2026-08-12",
-      expires: "2027-06-30",
+      user_id: "demo-magdaleena",
+      name: "Magdaleena",
+      role: ["Vice President", "IML Ambassador"][i],
+      tier: "gold" as Tier,
+      number: "SRM · " + ["0001", "0002"][i],
+      term: "Jun 2026 – Jun 2029",
+      issued: "2026-06-01",
+      expires: "2029-06-30",
       revoked: false,
       token: "demo-" + c.id + "-not-a-live-credential",
     })),
     events: [
       {
         id: "e1",
-        club_id: "design",
+        club_id: "csi",
         title: "Your card is ready",
-        detail: "Gold membership · 2026 / 2027",
-        at: "2026-08-12T10:30:00Z",
+        detail: "Gold membership · Jun 2026 – Jun 2029",
+        at: "2026-06-01T10:30:00Z",
       },
       {
         id: "e2",
-        club_id: "design",
+        club_id: "csi",
         title: "Welcome to the board",
-        detail: "Appointed as President",
-        at: "2026-08-12T09:00:00Z",
+        detail: "Appointed as Vice President",
+        at: "2026-06-01T09:00:00Z",
       },
       {
         id: "e3",
-        club_id: "tech",
+        club_id: "edc",
         title: "Your card is ready",
-        detail: "Silver membership · 2026 / 2027",
-        at: "2026-08-12T10:30:00Z",
+        detail: "Gold membership · Jun 2026 – Jun 2029",
+        at: "2026-06-01T10:30:00Z",
       },
     ],
     invitations: [],
     admin_clubs: [],
     college_admin: false,
-    name: "Aarav Mehta",
-    user_id: "demo-student",
+    name: "Magdaleena",
+    user_id: "demo-magdaleena",
   };
 }

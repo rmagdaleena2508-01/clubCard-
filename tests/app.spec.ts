@@ -1,11 +1,13 @@
 import { type Page, test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 async function openOffice(page: Page) {
-  await page.getByRole("button", { name: "Demo account", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Magdaleena · Demo", exact: true })
+    .click();
   await page.getByRole("button", { name: "Open demo club office" }).click();
 }
 
-test("wallet switches metals, flips to QR, and marks demo verification", async ({
+test("personal wallet switches gold clubs, flips to QR, and marks demo verification", async ({
   page,
 }) => {
   await page.goto("/");
@@ -15,14 +17,23 @@ test("wallet switches metals, flips to QR, and marks demo verification", async (
     }),
   ).toBeVisible();
   await expect(page.locator(".card-front")).toHaveClass(/gold/);
+  await expect(page.locator(".card-name")).toHaveText("Magdaleena");
+  await expect(page.locator(".card-role")).toHaveText("Vice President");
+  await expect(page.locator(".card-brand img")).toHaveAttribute(
+    "src",
+    "/logos/csi.png",
+  );
   await page
-    .getByRole("button", { name: "Select Coding Society, silver" })
+    .getByRole("button", {
+      name: "Select Entrepreneurship Development Cell, gold",
+    })
     .click();
-  await expect(page.locator(".card-front")).toHaveClass(/silver/);
-  await page
-    .getByRole("button", { name: "Select Photography Club, bronze" })
-    .click();
-  await expect(page.locator(".card-front")).toHaveClass(/bronze/);
+  await expect(page.locator(".card-front")).toHaveClass(/gold/);
+  await expect(page.locator(".card-role")).toHaveText("IML Ambassador");
+  await expect(page.locator(".card-brand")).toContainText(
+    "Entrepreneurship Development Cell",
+  );
+  await expect(page.locator(".card-back")).toContainText("2029-06-30");
   await page.getByRole("button", { name: "Flip card" }).click();
   await page
     .getByRole("link", { name: "Verify card — open verification" })
@@ -158,7 +169,7 @@ test("manifest and offline shell are valid without caching personal cards", asyn
 test("clean header and card flip keep both faces mounted", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("button", { name: "Demo account", exact: true }),
+    page.getByRole("button", { name: "Magdaleena · Demo", exact: true }),
   ).toBeVisible();
   await expect(page.getByText("Your campus, connected.")).toHaveCount(0);
   await expect(page.getByText("ACADEMIC YEAR")).toHaveCount(0);
@@ -169,7 +180,10 @@ test("clean header and card flip keep both faces mounted", async ({ page }) => {
     0,
   );
   await page
-    .getByRole("button", { name: "Flip Design Collective card", exact: true })
+    .getByRole("button", {
+      name: "Flip Computer Society of India student chapter card",
+      exact: true,
+    })
     .click();
   await expect(page.locator(".card-flipper")).toHaveAttribute(
     "data-back",

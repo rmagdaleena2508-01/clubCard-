@@ -52,3 +52,9 @@ npm test
 ```
 
 GitHub Actions repeats these checks on pushes and pull requests. Local screenshot files are made with `node scripts/screenshots.mjs` while `npm start` is running.
+
+## Magdaleena wallet update — October 16, 2026
+
+The local wallet now has two gold cards for Magdaleena: CSI Vice President and EDC IML Ambassador. Both run from June 1, 2026 through June 30, 2029. The CSI image loads from the supplied file. The EDC rocket image needs to be uploaded again; its temporary attachment path no longer exists.
+
+Validation: production build, TypeScript, and ESLint passed. Playwright passed 16 tests across desktop Chromium and iPhone-sized WebKit. Two checks remain skipped in WebKit: installed-PWA offline behavior and native touch pointer capture. These are automated browser checks, not tests on a physical iPhone or Android phone. Updated screenshots show the wallet and demo office. SQL and live authentication were not changed in this update.

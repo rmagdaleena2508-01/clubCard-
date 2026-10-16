@@ -422,10 +422,10 @@ main {
   );
 }
 .metal-card.gold {
-  --m1: #a99563;
-  --m2: #ccba86;
-  --m3: #f0e3ba;
-  --m4: #a08d5a;
+  --m1: #a97b21;
+  --m2: #d7ac48;
+  --m3: #f3d77c;
+  --m4: #b58b2b;
   --etch: #796331;
 }
 .metal-card.silver {
@@ -2201,4 +2201,55 @@ select {
   width: 12px;
   height: 12px;
   flex-shrink: 0;
+}
+
+/* Uploaded club marks and long campus names stay readable at phone sizes. */
+.club-logo {
+  object-fit: contain;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.card-brand {
+  max-width: 82%;
+}
+.card-brand span {
+  line-height: 1.2;
+}
+.card-brand .club-logo {
+  width: 36px;
+  height: 36px;
+}
+.card-college {
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  max-width: 66%;
+}
+.embossed-seal .club-logo {
+  width: 94px;
+  height: 94px;
+}
+.college-switch strong {
+  white-space: normal;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .card-brand {
+    font-size: 12px;
+    gap: 8px;
+  }
+  .card-brand .club-logo {
+    width: 30px;
+    height: 30px;
+  }
+  .card-college {
+    font-size: 8px;
+  }
+  .embossed-seal .club-logo {
+    width: 65px;
+    height: 65px;
+  }
+  .card-foot {
+    font-size: 8px;
+  }
 }

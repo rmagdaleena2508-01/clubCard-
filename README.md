@@ -84,7 +84,16 @@ There is no “Explore admin” button on the wallet. That was a demo shortcut t
 
 ## Try the demo
 
-No keys are needed for the demo. It uses a fictional school called Northfield College and a student called Aarav Mehta.
+No keys are needed for the demo. It opens a local account called **Magdaleena** at **SRM Institute of Science and Technology, Vadapalli campus**. This is a preview. It is not a real sign-in account or a school-issued ID.
+
+| Club | Role | Card | Dates |
+| --- | --- | --- | --- |
+| Computer Society of India student chapter | Vice President | Gold | June 1, 2026 to June 30, 2029 |
+| Entrepreneurship Development Cell | IML Ambassador | Gold | June 1, 2026 to June 30, 2029 |
+
+The dates use the first and last days of the months given by the app owner. Both cards use a warmer gold finish. The CSI logo is the image the owner sent. The rocket logo file was no longer on disk, so EDC has a temporary mark until the owner uploads it again.
+
+The local data key is `campus-cards-magdaleena-v2`. Older demo data stays under its old key and is not deleted. The SQL seed still has a separate, fictional three-club school for backend setup and tests. It does not create Magdaleena or grant her real access. To invite real people, first set up Supabase and assign an admin using the steps below. Do not treat the local demo office as a real access grant.
 
 - Pick Design, Code, or Photo below the card.
 - Tap the card or **Flip card** to see its back.

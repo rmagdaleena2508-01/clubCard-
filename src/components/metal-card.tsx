@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRef, type PointerEvent } from "react";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
@@ -13,6 +14,17 @@ import { QRCodeSVG } from "qrcode.react";
 import { type Card, type Club, status } from "@/lib/model";
 import { haptic } from "@/lib/haptics";
 export function ClubMark({ club, size = 30 }: { club: Club; size?: number }) {
+  if (club.logo)
+    return (
+      <Image
+        className="club-logo"
+        src={club.logo}
+        width={size}
+        height={size}
+        alt=""
+        unoptimized
+      />
+    );
   const Icon =
     club.symbol === "Code"
       ? Code
@@ -189,9 +201,11 @@ export function MetalCard({
                 <ClubMark club={club} size={104} />
               </span>
               <span className="card-college">
-                NORTHFIELD
+                SRM INSTITUTE OF SCIENCE
                 <br />
-                COLLEGE
+                AND TECHNOLOGY
+                <br />
+                VADAPALLI CAMPUS
               </span>
               <span className="credential-label">CLUB MEMBERSHIP</span>
             </div>
